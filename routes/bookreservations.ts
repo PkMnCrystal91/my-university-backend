@@ -9,7 +9,7 @@ import {
 const router = Router();
 
 router.get("/", getAllReservations);
-router.get("/:id", getAllReservations);
+router.get("/:id", getReservationsByUser);
 router.post("/", postReservation);
 router.delete("/:id", returnedBook);
 
