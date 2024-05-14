@@ -21,6 +21,10 @@ const User = db.define("users", {
     type: DataTypes.STRING,
     allowNull: false,
   },
+  password: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
 });
 
 User.hasMany(BookReservation, { foreignKey: "user_id" });

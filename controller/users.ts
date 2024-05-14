@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
+import { Op } from "sequelize";
 
 import User from "../models/users";
 import BookReservation from "../models/bookReservation";
-import Book from "../models/books";
 
 export const getAllUsers = async (req: Request, res: Response) => {
   const users = await User.findAll({
@@ -15,6 +15,25 @@ export const getAllUsers = async (req: Request, res: Response) => {
   });
 
   res.json(users);
+};
+
+export const loginUser = async (req: Request, res: Response) => {
+  const { body } = req;
+
+  const logedUser = await User.findAll({
+    where: {
+      email: body.email,
+      password: body.password,
+    },
+  });
+
+  if (logedUser!) {
+    return res.status(400).json({
+      msg: "Incorrect email/password ",
+    });
+  }
+
+  res.json(logedUser);
 };
 
 export const postUsuario = async (req: Request, res: Response) => {
