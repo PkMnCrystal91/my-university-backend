@@ -27,7 +27,7 @@ export const loginUser = async (req: Request, res: Response) => {
     },
   });
 
-  if (logedUser!) {
+  if (logedUser.length === 0) {
     return res.status(400).json({
       msg: "Incorrect email/password ",
     });
